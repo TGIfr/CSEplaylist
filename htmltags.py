@@ -16,5 +16,10 @@ def hrefs(url: str, nested: int = 1) -> set:
     return reduce(lambda a, x: a or hrefs(url, nested - 1), hrefs(url), set())
 
 
+def genre(url: str) -> str:
+    return 'rock' + url
+
+
 def mp3refs(url: str) -> List[str]:
-    return re.findall("http.*\.mp3", request.urlopen(url).read())
+    # return re.findall("https?.+\.mp3", str(request.urlopen(url).read()))
+    return re.findall("https?(\w|[./0-9])+?\.mp3", str(request.urlopen(url).read()))
