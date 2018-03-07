@@ -1,5 +1,7 @@
 import xml.etree.ElementTree as ET
 
+from bs4 import BeautifulSoup as bs
+
 
 def parse(filename):
     links = ET.parse(filename).getroot().findall('link')
@@ -12,7 +14,7 @@ def save(filename, songs):
         item = ET.SubElement(root, 'song')
         item.text = song
 
-    data = ET.tostring(root, encoding = "unicode")
+    data = ET.tostring(root, encoding="unicode")
     file = open(filename, "w")
     file.write(data)
     return data
