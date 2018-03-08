@@ -23,5 +23,5 @@ def genre(url: str) -> str:
 
 
 def mp3refs(url: str) -> List[str]:
-    # return re.findall("https?.+\.mp3", str(request.urlopen(url).read()))
-    return re.findall("(https?://)?(www)?[-a-zA-Z0-9@:%_+.~#?/=]+\.mp3", str(request.urlopen(url).read()))
+    return re.findall(r"\b(https?)?(www)?.+?\.mp3\b", str(request.urlopen(url).read()))
+    #return re.findall(r"^(https?://)?(www)?[a-zA-Z0-9@:%_+.~#?/=]+\.mp3$", str(request.urlopen(url).read()))
