@@ -42,7 +42,7 @@ def get_links(link):
         print(link + ' - connection problems')
         return []
 
-    soup = BeautifulSoup(html_page)
+    soup = BeautifulSoup(html_page, "html.parser")
 
     links = []
     for l in soup.findAll('a'):

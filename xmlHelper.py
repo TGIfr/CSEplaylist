@@ -1,7 +1,5 @@
 import xml.etree.ElementTree as ET
 
-from bs4 import BeautifulSoup as bs
-
 
 def parse(filename):
     links = ET.parse(filename).getroot().findall('link')
