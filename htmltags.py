@@ -11,7 +11,7 @@ def hrefs(url: str, nested: int = 1) -> set:
 
     if nested == 1:
         soup = BeautifulSoup(request.urlopen(url), "html.parser")
-        return set(parse.urljoin(url, a["href"]) for a in soup.find_all("a"))
+        return set(parse.urljoin(url, a.get("href")) for a in soup.find_all("a"))
 
     return reduce(lambda a, x: a or hrefs(url, nested - 1), hrefs(url), set())
 
