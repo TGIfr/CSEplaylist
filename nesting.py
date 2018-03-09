@@ -32,24 +32,24 @@ def get_nested_links(link, level=1):
                 res_links.append(l)
 
     return res_links
-    # print(link.get('href'))
+    # print(link.get("href"))
 
 
 def get_links(link):
     try:
         html_page = urlopen(link)
     except Exception:
-        print(link + ' - connection problems')
+        print(link + " - connection problems")
         return []
 
     soup = BeautifulSoup(html_page, "html.parser")
 
     links = []
-    for l in soup.findAll('a'):
-        curl = l.get('href')
-        if curl is not None and '#' not in curl:
+    for l in soup.findAll("a"):
+        curl = l.get("href")
+        if curl is not None and "#" not in curl:
             full_link = curl
-            if 'http://' not in curl or 'https://' not in curl:
+            if "http://" not in curl or "https://" not in curl:
                 full_link = urljoin(link, curl)
             if full_link not in links:
                 links.append(full_link)

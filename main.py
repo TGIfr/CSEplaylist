@@ -1,29 +1,17 @@
 from functools import reduce
 
 import xmlHelper
-import nesting
+import id3
 from htmltags import hrefs, mp3refs
 
-links = xmlHelper.parse('links.xml')
+links = xmlHelper.parse("links.xml")
 
-for l in links:
-    print(l)
-
-xmlHelper.save('dich.xml', links)
-# print(links)
-# page_urls = nesting.get_nested_links_from_list(links, 2)
-# for l in links:
-#     print(l)
-# print(hrefs(links[0], nested=2))
-page_urls = reduce(lambda a, l: a or hrefs(l, nested=1), links, set())
-print('Page urls')
+xmlHelper.save("dich.xml", links)
+page_urls = reduce(lambda a, l: a or hrefs(l, nested=2), links, set())
+print("Page urls")
 print(page_urls)
 
-import id3
-
-url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
-x = id3.get_genre(url)
-print(x)
 mp3urls = reduce(lambda a, url: a + mp3refs(url), page_urls, [])
 print("mp3 urls")
 print(mp3urls)
+print(list(filter(lambda url: "Alternative" in id3.get_genre(url), mp3urls)))
