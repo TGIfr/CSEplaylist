@@ -6,8 +6,8 @@ from htmltags import hrefs, mp3refs
 
 links = xmlHelper.parse('links.xml')
 
-# for l in links:
-#     print(l)
+for l in links:
+    print(l)
 
 xmlHelper.save('dich.xml', links)
 # print(links)
@@ -19,6 +19,11 @@ page_urls = reduce(lambda a, l: a or hrefs(l, nested=1), links, set())
 print('Page urls')
 print(page_urls)
 
+import id3
+
+url = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3'
+x = id3.get_genre(url)
+print(x)
 mp3urls = reduce(lambda a, url: a + mp3refs(url), page_urls, [])
 print("mp3 urls")
 print(mp3urls)
