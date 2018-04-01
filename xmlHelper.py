@@ -15,4 +15,5 @@ def save(filename, songs):
     data = ET.tostring(root, encoding="unicode")
     file = open(filename, "w")
     file.write(data)
+    file.close()
     return data
